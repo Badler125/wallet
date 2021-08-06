@@ -14,8 +14,12 @@ load_dotenv("C:\\Users\\thebe\\Fintech\\work_here\\mnemonic.env")
 mnemonic = os.getenv('mnemonic')
 
 w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:8545"))
+
+# middleware required for web3.py to support PoA transactions
 w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
+
+# uses the subprocess library to create a shell command that calls the ./derive script from Python
 def derive_wallets(coin=BTC, mnemonic=mnemonic, depth=3):
     command = f'php ./derive -g --mnemonic="{mnemonic}" --cols=all --coin={coin} --numderive={depth} --format=json'
     p = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
@@ -23,11 +27,14 @@ def derive_wallets(coin=BTC, mnemonic=mnemonic, depth=3):
     p_status = p.wait()
     return json.loads(output)
 
+# using derive_wallets to create a dictionary of ETH BTCTEST wallets
 coins = {
     ETH: derive_wallets(coin=ETH),  
     BTCTEST: derive_wallets(coin=BTCTEST)
 }
+
     
+# This function will convert the privkey string in a child key to an account object that bit or web3.py can use to transact   
 def priv_key_to_account(coin, priv_key):
     print(coin)
     print(priv_key)
@@ -35,8 +42,9 @@ def priv_key_to_account(coin, priv_key):
         return Account.privateKeyToAccount(priv_key)
     elif coin == BTCTEST:
         return bit.PrivateKeyTestnet(priv_key)
-    
-    
+
+
+# This function will create the raw, unsigned transaction that contains all the metadata needed to transact
 def create_tx(coin, account, to, amount):
     if coin == ETH:
         gasEstimate = w3.eth.estimateGas(
@@ -54,7 +62,7 @@ def create_tx(coin, account, to, amount):
         }
     elif coin == BTCTEST:
         return PrivateKeyTestnet.prepare_transaction(account.address,[(to, amount, BTC)])
- 
+
     
 def send_tx(coin, account, to, amount): 
     raw_tx = create_tx(coin, account, to, amount)
