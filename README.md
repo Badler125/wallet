@@ -50,7 +50,7 @@ Execute the following steps:
 
 * Using a command line navigate to your `hd-wallet-derive` folder.
 
- ![hd-wallet-derive-folder](Images/hd-wallet-derive-folder.png)
+ ![hd-wallet-derive-folder]()
 
 * Run the following commands.
 
@@ -62,7 +62,7 @@ Execute the following steps:
  ./hd-wallet-derive.php -g --key=xprv9tyUQV64JT5qs3RSTJkXCWKMyUgoQp7F3hA1xzG6ZGu6u6Q9VMNjGr67Lctvy5P8oyaYAL9CAWrUE9i6GoNMKUga5biW6Hx4tws2six3b9c --numderive=3 --preset=bitcoincore --cols=path,address --path-change
  ```
 
- ![hd-wallet-derive-execute](Images/hd-wallet-derive-execute.png)
+ ![hd-wallet-derive-execute]()
 
 Wallet.py files runs all the functions which interact with hd-wallet-derive using the command line. The function below calls out the dictionary of coins with addresses and privkeys.
 
@@ -81,7 +81,7 @@ def derive_wallets(coin):
 print(coins)
  ```
  
-![eth_btc](screen_shots/eth_btc.png)
+![eth_btc]()
 
 To transfer money from one account to another you will need to run `send_tx` functions. 
 
