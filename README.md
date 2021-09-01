@@ -3,12 +3,12 @@
 ## Background and Wallet description
 Say your new startup is focusing on building a portfolio management system that supports crypto, the problem is, there are so many coins out there! Thankfully you can use `hd-wallet-derive`, a command line tool that supports not only BIP32, BIP39, and BIP44, but also supports non-standard derivation paths for the most popular wallets out there today. 
 
-Once you've intgrated this "universal" wallet, you can begin to manage billions of addresses across 300+ coins, giving you a serious esge against the competition.
+Once you've integrated this "universal" wallet, you can begin to manage billions of addresses across 300+ coins, giving you a serious edge against the competition.
 
 For this demonstration we will just get 2 coins working: Ethereum and Bitcoin Testnet. Ethereum keys are the same format on any network, so the Ethereum keys should work with your custom networks or testnets.
 
 ## Dependencies
-The following dependencies are required for this assignement
+The following dependencies are required 
 
 > **Important:** If you have _not_ already installed the dependencies listed below, you may do so by following the instructions found in the following guides:
   > - [HD Wallet Derive Installation Guide](Resources/HD_Wallet_Derive_Install_Guide.md) 
@@ -96,5 +96,5 @@ def send_tx(coin, account, to, amount):
     elif coin == BTCTEST:
         return NetworkAPI.broadcast_tx_testnet(signed_tx)
  ```
- In my case I ran this function in wallet.py file: `send_tx(BTCTEST, Account_one, address_two, 0.002)` to send BTCTEST from one account to another (see folder screen_shots for more imagies). 
+ In my case I ran this function in wallet.py file: `send_tx(BTCTEST, Account_one, address_two, 0.002)` to send BTCTEST from one account to another (see folder screen_shots for more images). 
 
